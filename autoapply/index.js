@@ -31,6 +31,11 @@ const MAX_ALERTS = Number(process.env.MAX_ALERTS_PER_CV_PER_RUN || 10);
 const FORGET_AFTER_DAYS = 30;
 
 const env = process.env;
+// Secrets pasted into GitHub often pick up a stray space or newline, which breaks host names and logins.
+for (const key of ['RAPIDAPI_KEY', 'ADZUNA_APP_ID', 'ADZUNA_APP_KEY', 'JOOBLE_API_KEY',
+  'SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASS', 'SMTP_FROM']) {
+  if (typeof env[key] === 'string') env[key] = env[key].trim();
+}
 const emailEnabled = Boolean(env.SMTP_HOST && env.SMTP_USER && env.SMTP_PASS);
 
 // CVs/people.json: per-CV settings keyed by PDF file name.
