@@ -1,0 +1,11 @@
+{
+  "Nelisiwe_Zondi_CV_Active.pdf": {
+    "enabled": true,
+    "name": "Nelisiwe Zondi",
+    "email": "Ne3lisiwe@gmail.com",
+    "roles": [".NET Developer", "C# Developer", "Software Engineer .NET"],
+    "keywords": [".NET", "Dotnet", "C#", "ASP.NET", "Developer", "Engineer", "Software", "Backend", "Back-end", "Full Stack", "Fullstack", "Programmer"],
+    "exclude": ["Junior", "Graduate", "Intern", "Learnership", "Principal", "Architect", "Head of", "Manager", "Director", "Java", "Python", "PHP", "Tester", "QA", "Test Analyst"],
+    "skills": ["C#", "ASP.NET Core|ASP.NET|Web API", ".NET|.NET Core|.NET 8|.NET 6", "Entity Framework Core|Entity Framework|EF Core", "SQL Server|MSSQL|Azure SQL|T-SQL", "Microsoft Azure|Azure", "Azure DevOps", "CI/CD|CI CD|pipelines", "REST APIs|REST API|RESTful|REST", "microservices", "multi-tenant SaaS|multi-tenant|SaaS", "Clean Architecture", "SOLID", "JWT|OAuth", "LINQ", "Semantic Kernel|OpenAI|LLM|AI", "Vue.js|Vue", "React", "JavaScript", "Git", "Agile|Scrum"]
+  }
+}

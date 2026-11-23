@@ -1,0 +1,14 @@
+Dear Hiring Manager,
+
+I would like to apply for the {title} position at {company}. Please find my CV attached.
+
+I am a Software Engineer with nearly six years of experience building enterprise backend systems in C# and .NET for fintech and SaaS products. At African Resonance, a fintech company where I have worked since February 2023, I design and build secure, multi-tenant REST APIs with ASP.NET Core (.NET 6 and .NET 8), Entity Framework Core and SQL Server, following Clean Architecture and SOLID principles. I also built the team's Azure DevOps YAML CI/CD pipelines that deploy to SIT, UAT and Production, and publish our APIs through Azure API Management. Before that, I spent two years as a Full-Stack Software Developer at Codeplex, working across .NET backends and front ends. The role's focus on {matchedSkills} is a close match for my hands-on experience.
+
+Alongside my day-to-day work, I build AI-powered features in .NET with Semantic Kernel and the OpenAI API. I hold a BTech in Information Technology from Durban University of Technology and am working towards the Microsoft Certified: DevOps Engineer Expert (AZ-400) certification.
+
+I enjoy working closely with business analysts, testers and stakeholders to turn requirements into reliable software, and I am open to remote, hybrid and on-site roles. I would welcome the chance to discuss how I can contribute to {company}.
+
+Kind regards,
+{name}
+{email}
+linkedin.com/in/nelisiwe-zondi-628819172

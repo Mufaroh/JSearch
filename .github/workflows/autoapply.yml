@@ -1,0 +1,71 @@
+name: Auto-apply
+
+on:
+  schedule:
+    # 08:00, 12:00, 15:00 UTC = 10:00, 14:00, 17:00 South Africa time
+    - cron: '0 8,12,15 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (search and judge only, send nothing)'
+        type: boolean
+        default: true
+      demo_to:
+        description: 'Demo: send one application per CV to this email instead of employers (overrides dry run)'
+        type: string
+        default: ''
+
+concurrency:
+  group: autoapply
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Remembers which jobs were already sent, so nobody gets the same job twice.
+      - name: Restore run state
+        uses: actions/cache/restore@v4
+        with:
+          path: data
+          key: autoapply-state-${{ github.run_id }}
+          restore-keys: autoapply-state-
+
+      - name: Run auto-apply
+        run: |
+          mkdir -p data  # so the state cache always has something to save, even on demo/dry runs
+          if [ -n "$DEMO_TO" ]; then
+            npm run autoapply -- "--demo-to=$DEMO_TO"
+          else
+            npm run autoapply -- $DRY_RUN_FLAG
+          fi
+        env:
+          DEMO_TO: ${{ inputs.demo_to }}
+          DRY_RUN_FLAG: ${{ inputs.dry_run && '--dry-run' || '' }}
+          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
+          # Optional extra job sources: each is used only if its secrets exist
+          ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
+          ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
+          JOOBLE_API_KEY: ${{ secrets.JOOBLE_API_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          SMTP_FROM: ${{ secrets.SMTP_FROM }}
+
+      - name: Save run state
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data
+          key: autoapply-state-${{ github.run_id }}
