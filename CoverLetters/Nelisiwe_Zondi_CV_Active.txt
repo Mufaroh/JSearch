@@ -10,5 +10,6 @@ I enjoy working closely with business analysts, testers and stakeholders to turn
 
 Kind regards,
 {name}
+{phone}
 {email}
 linkedin.com/in/nelisiwe-zondi-628819172
